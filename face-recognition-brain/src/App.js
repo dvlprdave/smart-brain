@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // Require the client API
 import Clarifai from 'clarifai';
 import Navigation from './components/Navigation/Navigation';
+import Signin from "./components/Signin/Signin";
 import FaceRecognition from "./components/FaceRecognition/FaceRecognition";
 import Logo from './components/Logo/Logo';
 import ImageLinkForm from "./components/ImageLinkForm/ImageLinkForm";
@@ -20,9 +21,11 @@ class App extends Component {
       input: '',
       imageUrl: '',
       box: {},
+      route: 'signin'
     }
   }
 
+  // Calculate region information for face and box location
   calculateFaceLocation = (data) => {
     const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box;
     const image = document.getElementById("inputimage");
@@ -45,6 +48,7 @@ class App extends Component {
     this.setState({input: event.target.value});
   }
 
+  // When url to image is entered and you submit to detect
   onButtonSubmit = () => {
     this.setState({ imageUrl: this.state.input});
     app.models
@@ -55,15 +59,25 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
+  onRouteChange = () => {
+    this.setState({route: 'home'});
+  }
+
+  // App format 
   render() {
     return <div className="App">
         <Navigation />
-        <Logo />
-        <Rank />
-        <ImageLinkForm 
-        onInputChange={this.onInputChange}
-        onButtonSubmit={this.onButtonSubmit} />
-        <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl}/>
+        {this.state.route === 'signin' 
+          ?<Signin onRouteChange={this.onRouteChange}/>
+          : <div>
+              <Logo />
+              <Rank />
+              <ImageLinkForm 
+              onInputChange={this.onInputChange}
+              onButtonSubmit={this.onButtonSubmit} />
+              <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl}/>
+            </div>
+      }
       </div>;
   }
 }

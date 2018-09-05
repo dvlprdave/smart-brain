@@ -80,7 +80,7 @@ class Register extends React.Component {
                   type="password" 
                   name="password" 
                   id="password" 
-                  onChange={this.onEmailChange}
+                  onChange={this.onPasswordChange}
                 />
               </div>
             </fieldset>

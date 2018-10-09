@@ -22,9 +22,9 @@ class Register extends React.Component {
   }
 
   onSubmitSignIn = () => {
-    fetch('http://localhost:3000/register', {
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
+    fetch("https://fierce-woodland-99940.herokuapp.com/register", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email: this.state.email,
         password: this.state.password,
@@ -34,10 +34,10 @@ class Register extends React.Component {
       .then(response => response.json())
       .then(user => {
         if (user.id) {
-          this.props.loadUser(user)
-          this.props.onRouteChange('home')
+          this.props.loadUser(user);
+          this.props.onRouteChange("home");
         }
-      })
+      });
   }
 
   render() {

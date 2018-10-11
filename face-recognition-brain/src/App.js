@@ -77,7 +77,7 @@ class App extends Component {
       .then(response => {
         if (response) {
           fetch(
-            "https://fierce-woodland-99940.herokuapp.com/image",
+            'https://fierce-woodland-99940.herokuapp.com/image',
             {
               method: "put",
               headers: { "Content-Type": "application/json" },

@@ -66,26 +66,23 @@ class App extends Component {
   // When url to image is entered and you submit to detect
   onButtonSubmit = () => {
     this.setState({ imageUrl: this.state.input});
-    fetch('https://fierce-woodland-99940.herokuapp.com/imageurl', {
-        method: 'post',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          input: this.state.input
-        })
+    fetch("https://sleepy-castle-77589.herokuapp.com/imageurl", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        input: this.state.input
       })
+    })
       .then(reponse => reponse.json())
       .then(response => {
         if (response) {
-          fetch(
-            'https://fierce-woodland-99940.herokuapp.com/image',
-            {
-              method: "put",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                id: this.state.user.id
-              })
-            }
-          )
+          fetch("https://sleepy-castle-77589.herokuapp.com/image", {
+            method: "put",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              id: this.state.user.id
+            })
+          })
             // Image is submited and entry count is updated
             .then(response => response.json())
             .then(count => {
@@ -95,7 +92,7 @@ class App extends Component {
             })
             .catch(console.log());
         }
-        this.displayFaceBox(this.calculateFaceLocation(response))
+        this.displayFaceBox(this.calculateFaceLocation(response));
       })
       .catch(err => console.log(err));
   }

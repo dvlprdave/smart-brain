@@ -2,7 +2,9 @@
 
 A facial recognition app used to detect faces in photos. 
 
-https://smart-capture.herokuapp.com
+[View App](https://smart-capture.herokuapp.com)
+
+[Back-end Code](https://github.com/dvlprdave/smart-brain)
 
 ![smart-capture screenshot](images/screenshot-1.png)
 
